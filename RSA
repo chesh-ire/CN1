@@ -8,11 +8,11 @@ else
 return getGCD(num % mod, mod);
 }
 public static void main(String args[]) {
-int d = 0, e; // Intialization
-int message = 32; // number message
-int prime1 = 5; // 1st prime number p
-int prime2 = 7; // 2nd prime number q
-int primeMul = prime1 * prime2; // performing operations
+int d = 0, e; 
+int message = 32; 
+int prime1 = 5; 
+int prime2 = 7; 
+int primeMul = prime1 * prime2; 
 int primeMul1 = (prime1 - 1) * (prime2 - 1);
 System.out.println("primeMul1 is equal to : " + primeMul1 + "\n");
 for (e = 2; e < primeMul1; e++) {
