@@ -4,7 +4,7 @@ public static void main(String[] args) {
 Scanner scanner = new Scanner(System.in);
 System.out.print("Enter a string to compute CRC16-CCITT: ");
 String input = scanner.nextLine();
-int crc = 0x1D0F; // Initial value for CRC16-CCITT
+int crc = 0x1D0F; 
 int polynomial = 0x1021;
 byte[] bytes = input.getBytes();
 for (byte b : bytes) {
