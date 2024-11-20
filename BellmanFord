@@ -1,26 +1,26 @@
 import java.util.Scanner;
 public class BellmanFord {
-private int D[]; // Array to store shortest distances from the source vertex
-private int num_ver; // Number of vertices
-public static final int MAX_VALUE = 999; // A large number representing infinity
+private int D[]; 
+private int num_ver; 
+public static final int MAX_VALUE = 999; 
 public BellmanFord(int num_ver) {
 this.num_ver = num_ver;
-D = new int[num_ver + 1]; // Initialize the distance array
+D = new int[num_ver + 1]; 
 }
-// Method to evaluate Bellman-Ford algorithm
+
 public void BellmanFordEvaluation(int source, int A[][]) {
-// Step 1: Initialize distances
+
 for (int node = 1; node <= num_ver; node++) {
-D[node] = MAX_VALUE; // Set all distances to "infinity"
+D[node] = MAX_VALUE;
 }
-D[source] = 0; // Distance to source is 0
-// Step 2: Relax all edges (num_ver - 1) times
+D[source] = 0; 
+
 for (int node = 1; node <= num_ver - 1; node++) {
 for (int sn = 1; sn <= num_ver; sn++) {
 for (int dn = 1; dn <= num_ver; dn++) {
-// If there is an edge from sn to dn
+
 if (A[sn][dn] != MAX_VALUE) {
-// If the distance to the destination vertex can be shortened
+
 if (D[dn] > D[sn] + A[sn][dn]) {
 D[dn] = D[sn] + A[sn][dn];
 }
@@ -28,19 +28,19 @@ D[dn] = D[sn] + A[sn][dn];
 }
 }
 }
-// Step 3: Check for negative weight cycles
+
 for (int sn = 1; sn <= num_ver; sn++) {
 for (int dn = 1; dn <= num_ver; dn++) {
-// If there is an edge from sn to dn
+
 if (A[sn][dn] != MAX_VALUE) {
-// If we can still relax an edge, there is a negative weight cycle
+
 if (D[dn] > D[sn] + A[sn][dn]) {
 System.out.println("The graph contains a negative edge cycle");
-return; // Exit the method if a negative cycle is detected
+return; 
 }
 }
 }
-}// Step 4: Print the shortest distances
+}
 for (int vertex = 1; vertex <= num_ver; vertex++) {
 if (D[vertex] == MAX_VALUE) {
 System.out.println("Distance from source " + source + " to vertex " + vertex + " is infinity");
@@ -50,7 +50,7 @@ D[vertex]);
 }
 }
 }
-// Main method to get user input and run the Bellman-Ford algorithm
+
 public static void main(String[] args) {
 int num_ver;
 int source;
@@ -64,16 +64,16 @@ for (int sn = 1; sn <= num_ver; sn++) {
 for (int dn = 1; dn <= num_ver; dn++) {
 A[sn][dn] = scanner.nextInt();
 if (sn == dn) {
-A[sn][dn] = 0; // No edge to itself
+A[sn][dn] = 0; 
 }
 if (A[sn][dn] == 0 && sn != dn) {
-A[sn][dn] = MAX_VALUE; // Set non-existing edges to "infinity"
+A[sn][dn] = MAX_VALUE; 
 }
 }
 }
 System.out.println("Enter the source vertex:");
 source = scanner.nextInt();
-// Run the Bellman-Ford algorithm
+
 BellmanFord bf = new BellmanFord(num_ver);
 bf.BellmanFordEvaluation(source, A);
 scanner.close();
